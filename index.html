@@ -1,254 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ENPPI Academy — نظام اشتراكات قطاع الناشئين</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENPPI Academy</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", "Arial", sans-serif;
-      background: linear-gradient(180deg, #f5f7fb 0%, #ffffff 60%);
-      color: #1b2330;
-      margin: 0;
-      padding: 30px;
-      line-height: 1.6;
-    }
-    .card {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(17,24,39,0.08);
-      overflow: hidden;
-      border: 1px solid #e6eef6;
+        font-family: "Tajawal", sans-serif;
+        background: linear-gradient(120deg, #004a7f, #00a89a);
+        color: white;
+        overflow-x: hidden;
     }
     header {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      padding: 24px;
-      background: linear-gradient(90deg, rgba(3,86,153,0.08), rgba(0,168,150,0.02));
-      border-bottom: 1px solid #eef6fb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 50px;
+        background: rgba(0,0,0,0.2);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+        animation: fadeDown 1s ease-in-out;
+    }
+    @keyframes fadeDown {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
     .logo {
-      width: 92px;
-      height: 92px;
-      border-radius: 10px;
-      background: linear-gradient(135deg,#004a7f,#00a89a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 6px 18px rgba(0,72,120,0.12);
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: transform 0.3s;
     }
-    .title {
-      flex: 1;
+    .logo:hover { transform: scale(1.1) rotate(-3deg); }
+    nav a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: color 0.3s;
     }
-    .title h1 {
-      margin: 0 0 6px 0;
-      font-size: 20px;
-      color: #05263a;
+    nav a:hover { color: #ffd166; }
+    .hero {
+        text-align: center;
+        padding: 100px 20px;
+        animation: fadeUp 1.2s ease-in-out;
     }
-    .title p {
-      margin: 0;
-      color: #3b5566;
-      opacity: 0.9;
+    @keyframes fadeUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
-    .meta {
-      text-align: left;
-      min-width: 140px;
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
     }
-    .meta .season {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: #e9f7fb;
-      color: #006b8f;
-      font-weight: 600;
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
-    main {
-      padding: 22px 28px;
+    .cta-btn {
+        padding: 12px 25px;
+        background: #ffd166;
+        color: #003049;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s, transform 0.2s;
     }
-    .intro {
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
+    .cta-btn:hover {
+        background: #ffb703;
+        transform: scale(1.05);
     }
-    .intro .blurb {
-      flex: 1;
-      font-size: 15px;
-      color: #1b2b38;
+    section {
+        padding: 60px 20px;
+        background: white;
+        color: #003049;
     }
-    .intro .start-date {
-      min-width: 180px;
-      text-align: center;
-      background: #f3fcff;
-      border-radius: 10px;
-      padding: 12px;
-      border: 1px dashed #d5eef4;
-      color: #006b8f;
-      font-weight: 700;
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 40px;
+        position: relative;
     }
-    .pricing {
-      margin-top: 20px;
-      overflow-x: auto;
+    h2::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: #ffd166;
+        margin: 10px auto;
+        border-radius: 2px;
     }
     table {
-      width: 100%;
-      border-collapse: collapse;
-      background: linear-gradient(180deg,#ffffff,#fbfdff);
-      border-radius: 8px;
-      overflow: hidden;
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border-radius: 10px;
     }
     th, td {
-      padding: 14px 12px;
-      text-align: center;
-      font-size: 15px;
-      border-bottom: 1px solid #f1f6f9;
+        padding: 15px;
+        text-align: center;
     }
-    thead th {
-      background: linear-gradient(90deg,#f0fafc,#eef7fb);
-      color: #06455f;
-      font-weight: 700;
-      font-size: 14px;
+    thead {
+        background: #00a89a;
+        color: white;
     }
-    tbody tr:hover {
-      background: #fbfeff;
-    }
-    .highlight {
-      background: linear-gradient(90deg,#fffef2,#fff8e6);
-      color: #7a4b00;
-      font-weight: 800;
-      border-left: 4px solid #ffd166;
-    }
-    .details {
-      margin-top: 18px;
-      display: grid;
-      gap: 10px;
-      font-size: 14px;
-      color: #324a55;
-    }
-    .details ul {
-      margin: 0;
-      padding-left: 18px;
-    }
+    tbody tr:nth-child(even) { background: #f8f9fa; }
+    tbody tr:hover { background: #ffd16633; transition: 0.3s; }
     .bag-unavailable {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 8px;
-      background: #fff0f0;
-      color: #8b1e1e;
-      border: 1px solid #f1c2c2;
-      font-weight: 800;
+        display: inline-block;
+        background: #ffcccc;
+        color: #8b1e1e;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-top: 15px;
     }
-    .footer {
-      padding: 18px 28px;
-      background: linear-gradient(180deg,#fbfdff,#f8fcff);
-      border-top: 1px solid #eef6fb;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
+    footer {
+        background: #002b36;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        font-size: 0.9rem;
     }
-    .contact {
-      font-size: 14px;
-      color:#15313a;
+    /* زر الواتساب العائم */
+    .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        left: 20px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s;
     }
-    .signature {
-      text-align: center;
-      font-size: 13px;
-      color:#0b2b36;
-      opacity:0.9;
+    .whatsapp-float:hover {
+        transform: scale(1.1);
     }
-    @media (max-width:640px) {
-      header { flex-direction: column; align-items: flex-start; gap:12px; }
-      .meta { text-align: right; width:100%; }
-      .intro { flex-direction: column; }
-      th, td { padding: 12px 8px; font-size: 14px; }
-    }
-  </style>
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="card" role="document" aria-label="نموذج اشتراك أكاديمية إنبي">
-    <header>
-      <div class="logo" aria-hidden="true">
-        ENPPI<br>ACADEMY
-      </div>
-      <div class="title">
-        <h1>أكاديمية نادي إنبي لكرة القدم - قطاع الناشئين</h1>
-        <p>انطلق والعب بشغف لتطوير مهاراتك — فرصة الانضمام لأول قطاع ناشئين في مصر. برامج تدريبية شاملة وتطوير مهارات فنية واحترافية.</p>
-      </div>
-      <div class="meta">
-        <div class="season">الموسم 2025 / 2026</div>
-      </div>
-    </header>
-    <main>
-      <div class="intro">
-        <div class="blurb">
-          <strong>نظام اشتراك الأكاديمية</strong><br>
-          اختر نظام الاشتراك الأنسب لك وابدأ رحلة التطوير. يمكن تقسيط قيمة الاشتراك على 6 شهور عبر فيزا البنك الأهلي المصري.
-        </div>
-        <div class="start-date">
-          بداية التسجيل:<br><strong>01-08-2025</strong>
-        </div>
-      </div>
-      <section class="pricing" aria-labelledby="pricing-heading">
-        <h2 id="pricing-heading" style="font-size:16px;margin:16px 0 8px 0;color:#0b3a49;">تفاصيل أسعار الاشتراك</h2>
-        <table role="table">
-          <thead>
+
+<header>
+    <div class="logo">ENPPI Academy</div>
+    <nav>
+        <a href="#pricing">الأسعار</a>
+        <a href="#bag">الحقيبة</a>
+        <a href="#contact">تواصل معنا</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>أكاديمية نادي إنبي لكرة القدم</h1>
+    <p>انطلق والعب بشغف لتطوير مهاراتك — فرصة الانضمام لأول قطاع ناشئين في مصر. برامج تدريبية شاملة وتطوير مهارات فنية واحترافية.</p>
+    <button class="cta-btn">سجل الآن</button>
+</div>
+
+<section id="pricing">
+    <h2>تفاصيل أسعار الاشتراك</h2>
+    <table>
+        <thead>
             <tr>
-              <th>الاشتراك</th>
-              <th>أعضاء نادي إنبي</th>
-              <th>قطاع البترول</th>
-              <th>غير الأعضاء</th>
+                <th>الاشتراك</th>
+                <th>أعضاء نادي إنبي</th>
+                <th>قطاع البترول</th>
+                <th>غير الأعضاء</th>
             </tr>
-          </thead>
-          <tbody>
+        </thead>
+        <tbody>
             <tr>
-              <td style="font-weight:700;">اشتراك حتى 30-11-2025</td>
-              <td>2,500 جم</td>
-              <td class="highlight">3,000 جم</td>
-              <td>3,500 جم</td>
+                <td>حتى 30-11-2025</td>
+                <td>2,500 جم</td>
+                <td>3,000 جم</td>
+                <td>3,500 جم</td>
             </tr>
             <tr>
-              <td style="font-weight:700;">اشتراك حتى 30-05-2026</td>
-              <td>5,000 جم</td>
-              <td class="highlight">6,000 جم</td>
-              <td>7,000 جم</td>
+                <td>حتى 30-05-2026</td>
+                <td>5,000 جم</td>
+                <td>6,000 جم</td>
+                <td>7,000 جم</td>
             </tr>
-          </tbody>
-        </table>
-      </section>
-      <section class="details" aria-labelledby="requirements-heading">
-        <h3 id="requirements-heading" style="margin:6px 0 0 0;color:#0b3a49;font-size:15px;">تفاصيل الحقيبة الرياضية والمحتوى</h3>
-        <p style="margin:0;">
-          <span class="bag-unavailable">الحقيبة الرياضية: غير متوفرة حالياً</span>
-        </p>
-        <p style="margin:6px 0 0 0;"><strong>هدف الأكاديمية:</strong> تطوير مهارات اللاعبين الكروية من خلال برامج تدريبية احترافية.</p>
-        <h4 style="margin:6px 0 0 0;color:#0b3a49;font-size:14px;">اختبارات قطاع الناشئين</h4>
-        <ul>
-          <li>الاوراق المطلوبة: صورة حديثة للطفل، تقرير طبي لممارسة الرياضة أو شهادة ميلاد إلكترونية.</li>
-          <li>يجري اللاعب اختباراً على مستوى الأكاديمية ويتم ترشيحه لفرق القطاع حسب المستوى الفني والبدني.</li>
-          <li>يحق للمدرب المختص ترشيح اللاعبين للمشاركة في مباريات داخل وخارج الأكاديمية.</li>
-          <li>الاشتراك في دوري الاتحاد المصري لكرة القدم يتم بناءً على المستوى الفني والتقرير السنوي.</li>
-          <li>خصم 5% للأخ/الأخ الآخر وخصم 10% عند دفع قيمة الاشتراك كاملة عند التسجيل.</li>
-        </ul>
-      </section>
-    </main>
-    <div class="footer">
-      <div class="contact">
-        <div><strong>للاستفسار والتواصل:</strong></div>
-        <div>الهاتف: <span style="font-weight:700;">01142404683</span></div>
-        <div>البريد الإلكتروني: <span style="font-weight:700;">nrkhaled11@gmail.com</span></div>
-      </div>
-      <div class="signature">
-        رئيس قطاع الناشئين — نادي إنبي الرياضي<br>
-        كابتن / عماد جابر
-      </div>
-    </div>
-  </div>
+        </tbody>
+    </table>
+</section>
+
+<section id="bag">
+    <h2>الحقيبة الرياضية</h2>
+    <div class="bag-unavailable">الحقيبة الرياضية: غير متوفرة حالياً</div>
+</section>
+
+<section id="contact">
+    <h2>تواصل معنا</h2>
+    <p style="text-align:center;">اضغط على أيقونة الواتساب أسفل الشاشة للتواصل المباشر.</p>
+</section>
+
+<a href="https://wa.me/201010658862" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+    رئيس قطاع الناشئين — نادي إنبي الرياضي | كابتن / عماد جابر
+</footer>
+
 </body>
 </html>
